@@ -17,6 +17,17 @@ class RecomendMovie extends Component {
             })
         })
     }
+    componentDidUpdate(prevProps){
+        if(this.props.movieId!==prevProps.movieId){   
+            fetch(`https://api.themoviedb.org/3/movie/${this.props.movieId}/similar?api_key=${this.api_key}`)
+            .then(data => data.json())
+            .then(data =>{
+                this.setState({
+                    movies:[...data.results]
+                })
+            })
+        }
+    }
     render() {
         return (
             <div>

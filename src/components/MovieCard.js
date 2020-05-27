@@ -11,7 +11,7 @@ class MovieCard extends Component {
         //this.changePage = this.changePage.bind(this);
     }
     componentDidMount(){
-        console.log(this.props)
+        //console.log(this.props)
         this.setState({
             movie:{...this.props.movieInfo}
         })

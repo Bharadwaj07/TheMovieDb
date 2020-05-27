@@ -8,10 +8,12 @@ class MovieDetails extends Component {
         this.movieId = this.props.match.params.movieid
         this.api_key = process.env.REACT_APP_API;
         this.state ={
+            movieId:'',
             movieDetails:{}
         }
     }
     componentDidMount(){
+        //fetching data
        fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits`)
        .then(data => data.json())
        .then(data =>{
@@ -21,6 +23,26 @@ class MovieDetails extends Component {
            })
            //console.log(this.state.movieDetails)
        })
+    }
+    componentDidUpdate(prevProps){
+       if(this.props.location.pathname!==prevProps.location.pathname){
+       
+           this.movieId = this.props.match.params.movieid
+      
+           fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits`)
+            .then(data => data.json())
+            .then(data =>{
+                
+                this.setState({
+                    movieDetails:{...data}
+                })
+               
+            })
+       }
+    
+
+        
+      
     }
 
     // refreshMovieDetails = data => console.log(data)
