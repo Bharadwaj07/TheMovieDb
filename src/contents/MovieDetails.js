@@ -1,6 +1,7 @@
-import React,{Component} from 'react'
-import './MovieDetails.css'
+import React,{Component} from 'react';
+import './MovieDetails.css';
 import RecomendMovie from './RecomendMovie';
+
 class MovieDetails extends Component {
     constructor(props){
         super(props);
@@ -11,16 +12,18 @@ class MovieDetails extends Component {
         }
     }
     componentDidMount(){
-       fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=e3d78b587cd1b3ff9240b60629168fa9&append_to_response=credits`)
+       fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits`)
        .then(data => data.json())
        .then(data =>{
            //console.log(data)
            this.setState({
                movieDetails:{...data}
            })
-           console.log(this.state.movieDetails)
+           //console.log(this.state.movieDetails)
        })
     }
+
+    // refreshMovieDetails = data => console.log(data)
     render(){
         
         return (
@@ -58,10 +61,12 @@ class MovieDetails extends Component {
                         </div>
                     </div>
                 </div>
+             
                 <div className='recomendation'>
                     <h3>Recocmended .</h3>
-                    <RecomendMovie movieId={this.movieId}/>
+                    <RecomendMovie movieId={this.movieId} />
                 </div>
+                
             </div>
         )
     }

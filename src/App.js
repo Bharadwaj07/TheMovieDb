@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import Home from './contents/Home';
-import {BrowserRouter as Router ,Route,Switch} from 'react-router-dom'
+import {BrowserRouter as Router ,Route,Switch,withRouter} from 'react-router-dom'
 import MovieDetails from './contents/MovieDetails';
+
 
 function App() {
   return (

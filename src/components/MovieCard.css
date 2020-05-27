@@ -4,7 +4,8 @@
     display: inline-block;
     margin:20px 10px;
     border-radius: 20px;
-    /* cursor: pointer; */
+    cursor: pointer;
+    
     /* box-shadow: 5px 2px 3px  rgb(218, 126, 198); */
 }
 .card-img{

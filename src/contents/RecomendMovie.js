@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import MovieList from './MovieList';
-
 class RecomendMovie extends Component {
     constructor(props){
         super(props)
@@ -21,7 +20,7 @@ class RecomendMovie extends Component {
     render() {
         return (
             <div>
-                <MovieList movies={this.state.movies}/>
+                <MovieList movies={this.state.movies} />
             </div>
         )
     }

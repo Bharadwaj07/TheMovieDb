@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
-import './MovieList.css'
-function MovieList(props){
+import './MovieList.css';
+function MovieList(props) {
 const movies = props.movies;
 const movieList = movies.map(movie=>{
     return(
-        <MovieCard movieInfo={movie} key={movie.id}/>
+        <MovieCard movieInfo={movie} key={movie.id} />
     )
 })
 
@@ -14,5 +14,7 @@ const movieList = movies.map(movie=>{
             {movieList}
         </div>
     )
+
+    
 }
 export default MovieList;
