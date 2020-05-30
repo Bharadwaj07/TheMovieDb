@@ -20,11 +20,11 @@ class MovieCard extends Component {
         //console.log(this.state.movie)
         return (
                 
-            <Link to={`/${this.state.movie.id}`} >
+            <Link to={`/movie/${this.state.movie.id}`} >
                 <div className='card-container'>
                     <div className='card-img'>
-                        {this.state.movie.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card image' style={{width:"100%",height:"100%"}}/>
-                        :<img src={`http://image.tmdb.org/t/p/w185${this.state.movie.poster_path}`} alt='movie card image' style={{width:"100%",height:"100%"}}/>}
+                        {this.state.movie.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card' style={{width:"100%",height:"100%"}}/>
+                        :<img src={`http://image.tmdb.org/t/p/w185${this.state.movie.poster_path}`} alt='movie card' style={{width:"100%",height:"100%"}}/>}
                     </div>
                     <div className='card-info'>
                         <h2>{this.state.movie.title}</h2>

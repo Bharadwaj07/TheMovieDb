@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MovieCard from '../components/MovieCard';
 import './MovieList.css';
 function MovieList(props) {
@@ -10,8 +10,10 @@ const movieList = movies.map(movie=>{
 })
 
     return(
-        <div className='list-container'>
-            {movieList}
+        <div className='movieList'>
+            <div className='list-container'>
+                {movieList}
+            </div>
         </div>
     )
 

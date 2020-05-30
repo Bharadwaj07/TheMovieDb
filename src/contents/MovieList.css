@@ -1,3 +1,8 @@
+.movieList{
+    width: 100%;
+    min-height: 100%;
+    margin: 20px auto;
+}
 .list-container{
     margin: 30px auto;
 }

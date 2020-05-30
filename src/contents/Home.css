@@ -1,0 +1,10 @@
+.conatiner{
+    width: 100%;
+    min-height: 700px;
+    display: flex;
+}
+.movie-container{
+    width: 80%;
+    margin: 20px auto;
+    
+}

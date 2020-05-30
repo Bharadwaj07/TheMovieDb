@@ -29,6 +29,7 @@ class RecomendMovie extends Component {
         }
     }
     render() {
+       
         return (
             <div>
                 <MovieList movies={this.state.movies} />

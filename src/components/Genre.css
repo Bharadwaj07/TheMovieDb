@@ -1,0 +1,25 @@
+.genre h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight:700;
+    font-size: 20px;
+    color: rgb(17, 28, 29);
+    text-align: justify;
+}
+.item h4{
+    font-weight: 900;
+    font-size: 11px;
+    /* text-align: center; */
+    margin-left: 10px;
+    color: rgb(32, 43, 54);
+} 
+.item{
+    cursor: pointer;
+    width: 70%;
+    /* margin: 5px auto; */
+    /* border: 1px solid; */
+    border-radius: 30px;
+}
+.item a{
+    text-decoration: none;
+    text-transform: capitalize;
+}

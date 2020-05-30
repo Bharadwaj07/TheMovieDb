@@ -52,8 +52,8 @@ class MovieDetails extends Component {
             <div>
                 <div className='detail-container'>
                     <div className='detail-img'>
-                    {this.state.movieDetails.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card image' style={{width:"100%",height:"100%"}}/>
-                    :<img src={`http://image.tmdb.org/t/p/w185${this.state.movieDetails.poster_path}`} alt='movie card image' style={{width:"100%",height:"100%"}}/>}
+                    {this.state.movieDetails.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card' style={{width:"100%",height:"100%"}}/>
+                    :<img src={`http://image.tmdb.org/t/p/w185${this.state.movieDetails.poster_path}`} alt='movie card' style={{width:"100%",height:"100%"}}/>}
                     </div>
                     <div className='detail-info'>
                         <div className='movie-title'>

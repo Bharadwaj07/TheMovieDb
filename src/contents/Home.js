@@ -1,42 +1,51 @@
 import React, { Component } from 'react';
 import NavBar from '../components/NavBar';
-import MovieList from './MovieList';
-
+import SideMenu from '../components/SideMenu';
+import {Switch,Route, Redirect} from 'react-router-dom';
+import './Home.css';
+import DiscoverMovies from './DiscoverMovies';
+import GenreMovies from './GenreMovies';
+import SearchMovies from './SearchMovies';
+import MovieDetails from './MovieDetails';
 class Home extends Component {
-    constructor(){
-        super();
-        this.state ={
-            movies:[],
-            searchItem:''
-        }
-        this.api_key = process.env.REACT_APP_API;
-        this.handleSubmit =this.handleSubmit.bind(this)
-        this.handleChange =this.handleChange.bind(this)
-    }
-    handleSubmit(e){
-        e.preventDefault();
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.state.searchItem}`)
-        .then(data => data.json())
-    .then(data => {
-        //console.log(data)
-      this.setState({ movies: [...data.results]})
-    })
-    }
-
-    handleChange(e){
-        this.setState({
-            searchItem:e.target.value
-        })
-    }
     render() {
+        // console.log(this.state.movies)
         return (
             <div>
-              <NavBar
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-              />
-              
-              <MovieList movies={this.state.movies}/>
+              <NavBar/>
+             <div className='conatiner'>
+                <SideMenu/> 
+                
+               <div className='movie-container'>
+                    <Switch>
+                        
+                        <Route
+                        path='/discover/:movieType'
+                        component={DiscoverMovies}
+                        />
+                        <Route
+                            path='/genre/:genreId'
+                            component={GenreMovies}
+                        />
+                        <Route
+                            path='/search/:query'
+                            component={SearchMovies}
+                        />
+                        <Route
+                            path='/movie/:movieid'
+                            component={MovieDetails}
+                        />
+                        <Route
+                            exact
+                            path='/'
+                            render={() => <Redirect
+                                to='/discover/popular'
+                            />}
+                        />
+                    </Switch>
+               </div>
+
+             </div>
             </div>
         )
     }

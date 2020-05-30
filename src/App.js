@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
 import Home from './contents/Home';
-import {BrowserRouter as Router ,Route,Switch,withRouter} from 'react-router-dom'
-import MovieDetails from './contents/MovieDetails';
-
+import {BrowserRouter as Router} from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
      <Router>
-        <Switch>
+     <Home/>
+        {/* <Switch>
             <Route
               exact
               path='/'
@@ -19,8 +18,9 @@ function App() {
             path='/:movieid'
             component={MovieDetails}
             />
-        </Switch>
+        </Switch> */}
      </Router>
+     
     </div>
   );
 }

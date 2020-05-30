@@ -1,0 +1,12 @@
+.sidemenu{
+    display: flex;
+    flex-direction: column;
+    width:15%;
+    /* height: 1000px; */
+    background:transparent;
+    box-sizing: inherit;
+    /* position: fixed; */
+}
+.sidemenu-content{
+    margin-left: 15px;
+}
