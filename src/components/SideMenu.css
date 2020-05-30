@@ -10,3 +10,28 @@
 .sidemenu-content{
     margin-left: 15px;
 }
+.item h4{
+    
+    font-size: 11px;
+    margin-left: 10px;
+    color: rgb(32, 43, 54);
+}   
+.item{
+    display: inline-flex;
+    cursor: pointer;
+    width: 70%;
+    border: 1px solid transparent;
+    margin: 3px 0;
+    border-radius: 30px;
+    align-items: center;
+}
+.faicon{
+    margin-left: 15px;
+}
+.item a{
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.item:hover{
+    border-color: teal;
+}
