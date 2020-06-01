@@ -10,7 +10,7 @@ class SearchMovies extends Component {
     }
     componentDidMount(){
         const query = this.props.match.params.query;
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${query}`)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${query}&language=en-US`)
         .then(data => data.json())
         .then(data => {
             //console.log(data)

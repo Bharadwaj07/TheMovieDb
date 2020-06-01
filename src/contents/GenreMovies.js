@@ -24,7 +24,7 @@ class GenreMovies extends Component {
         if(this.props.location.pathname!==prevProps.location.pathname){
             const genreId = this.props.match.params.genreId
             // console.log(genreId)
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}`)
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}&language=en-US`)
             .then(data =>data.json())
             .then(data =>{
                 //console.log(data)

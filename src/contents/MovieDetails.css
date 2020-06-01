@@ -4,7 +4,7 @@
     margin: 60px auto   ;
     display: inline-flex;
     border-radius: 20px;
-    border: 1px solid tan;
+    
 }
 .detail-img{
     width: 30%;
@@ -21,13 +21,103 @@
 .detail-info{
     width: 60%;
 }
+.movietitle h3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 40px;
+    text-transform: uppercase;
+    color: rgb(3, 26, 26);
+    margin: 5px auto;
+}
+.movietitle h4{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    text-transform: capitalize;
+    color: rgb(3, 26, 26);
+    margin: 10px auto;
+}
 .movie-rantingsAndruntime{
     width: 100%;
     display: flex;
+    margin: 20px auto;
 }
 .ratings{
     width: 50%;
 }
-.runtimeDetails{
+.info{
     width: 50%;
+    font-family: sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgb(103, 110, 110);
 }
+.info span{
+    margin-left: 5px;
+}
+.genreDetails h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin:0 auto;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: rgb(15, 88, 88);
+    text-transform: uppercase;
+}
+.genreDetails div span{
+    display: inline-flex;
+    margin:10px 10px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    color: rgb(27, 58, 58);
+}
+.genreicon{
+    margin-right: 5px;
+}
+.overview h3{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(39, 66, 66);
+}
+.overview p{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 500;
+    color: rgb(25, 39, 39);
+}
+.connect{
+    display: inline-flex;
+    width: 100%;
+}
+.connect button{
+    width: 20%;
+    height: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 10px;
+}
+.connect button a{
+    text-decoration: none;
+    text-transform: capitalize;
+    color: teal;
+}
+.connect button i{
+    margin: 0 10px;
+}
+ .recomendation{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(39, 66, 66);
+    margin: 0 auto;
+    text-transform: uppercase;
+} 
+.recomend{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgb(39, 66, 66);
+    margin: 0 auto;
+    text-transform: uppercase;
+} 

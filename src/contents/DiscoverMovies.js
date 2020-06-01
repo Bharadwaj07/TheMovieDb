@@ -25,7 +25,7 @@ class DiscoverMovies extends Component {
         if(this.props.location.pathname!==prevProps.location.pathname){
             const movieType = this.props.match.params.movieType
             console.log(movieType)
-            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}`)
+            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US`)
             .then(data =>data.json())
             .then(data =>{
                 console.log(data)

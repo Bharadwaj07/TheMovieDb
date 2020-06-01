@@ -1,11 +1,13 @@
 import React,{Component}from 'react';
 import './MovieCard.css';
 import {Link} from 'react-router-dom';
+import RenderRatings from './RenderRatings';
 class MovieCard extends Component {
     constructor(props){
         super(props);
         this.state = {
-            movie :{}
+            movie :{},
+            ratings:Number
         } 
         
         //this.changePage = this.changePage.bind(this);
@@ -13,11 +15,12 @@ class MovieCard extends Component {
     componentDidMount(){
         //console.log(this.props)
         this.setState({
-            movie:{...this.props.movieInfo}
+            movie:{...this.props.movieInfo},
+            
         })
     }
     render(){
-        //console.log(this.state.movie)
+        //console.log(this.state.movie.vote_average)
         return (
                 
             <Link to={`/movie/${this.state.movie.id}`} >
@@ -27,7 +30,14 @@ class MovieCard extends Component {
                         :<img src={`http://image.tmdb.org/t/p/w185${this.state.movie.poster_path}`} alt='movie card' style={{width:"100%",height:"100%"}}/>}
                     </div>
                     <div className='card-info'>
-                        <h2>{this.state.movie.title}</h2>
+                        <h4>{this.state.movie.title}</h4>
+                        <RenderRatings
+                            ratings={this.state.movie.vote_average}
+                        />
+                        {/* <span className='vote-details'>
+                             {this.state.movie.vote_average} average rating on {this.state.movie.vote_count} votes
+                        </span> */}
+                        
                     </div>
                 </div>
             </Link>

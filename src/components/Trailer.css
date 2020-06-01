@@ -1,0 +1,11 @@
+.trailerClose{
+    position: absolute;
+    top: 3%;
+    right: 10%;
+    cursor: pointer;
+}
+.videoModal{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}

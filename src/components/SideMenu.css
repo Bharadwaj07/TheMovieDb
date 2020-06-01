@@ -5,10 +5,18 @@
     /* height: 1000px; */
     background:transparent;
     box-sizing: inherit;
+    margin-top: 40px;
+    border-right-style: solid;
+    border-right-width: thin;
+    border-right-color: rgb(139, 130, 130);
     /* position: fixed; */
 }
 .sidemenu-content{
     margin-left: 15px;
+}
+.logo{
+    width: 70%;
+    margin: 30px 20px;
 }
 .item h4{
     
