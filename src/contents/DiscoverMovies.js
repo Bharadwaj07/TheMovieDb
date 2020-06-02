@@ -30,6 +30,9 @@ class DiscoverMovies extends Component {
         })
     }
     componentDidUpdate(prevProps){
+        console.log(this.props.location.pathname)
+       console.log('params ',this.props.match.params)
+       //console.log()
         if(this.props.location.pathname!==prevProps.location.pathname){
             const movieType = this.props.match.params.movieType
             const page = this.props.location.search
@@ -40,6 +43,7 @@ class DiscoverMovies extends Component {
             .then(data =>data.json())
             .then(data =>{
                 //console.log(data)
+                data.results &&
                 this.setState({
                     movies:[...data.results],
                     data:{...data},
@@ -49,9 +53,10 @@ class DiscoverMovies extends Component {
         }
     }
     render() {
-      // console.log(this.props.baseUrl)
+       console.log('discover render',this.state.data.page)
         return (
             <MovieList 
+                data={this.state.data}
                 movies={this.state.movies} 
                 baseUrl={this.state.baseUrl} 
                 page ={this.state.data.page}

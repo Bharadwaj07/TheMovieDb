@@ -9,6 +9,12 @@ export default class MovieList extends Component {
     constructor(props){
         super(props);
     }
+    componentDidMount(){
+        console.log(this.props)
+    }
+    componentDidUpdate(){
+        console.log('MovieList update',this.props)
+    }
     render() {
         //console.log(this.props.baseUrl)
         const movies = this.props.movies;

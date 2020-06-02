@@ -1,15 +1,15 @@
 .sidemenu{
     display: flex;
     flex-direction: column;
-    width:15%;
-    /* height: 1000px; */
+    width: 13rem;
+    min-height: 400px;
     background:transparent;
     box-sizing: inherit;
     margin-top: 40px;
+    box-sizing: border-box;
     border-right-style: solid;
     border-right-width: thin;
     border-right-color: rgb(139, 130, 130);
-    /* position: fixed; */
 }
 .sidemenu-content{
     margin-left: 15px;
@@ -43,3 +43,14 @@
 .item:hover{
     border-color: teal;
 }
+
+/* background: #e7eef1;
+padding: 40px 40px 60px;
+box-sizing: border-box;
+border-radius: 2px;
+box-shadow: 0 12px 0 -6px #fa90a3;
+
+position: fixed;
+right: 5%;
+width: 36%;
+float: right; */

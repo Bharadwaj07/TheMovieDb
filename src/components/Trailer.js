@@ -22,7 +22,7 @@ function Trailer(props) {
             function closeModal(){
                 setModal(false);
               }
-
+              console.log("openmodla",openModal)
     return (
         
             <button onClick={() => setModal(true)}>
@@ -32,13 +32,13 @@ function Trailer(props) {
                   isOpen={openModal} 
                   onRequestClose={closeModal} 
                   style={customStyles} 
-                  shouldCloseOnOverlayClick={true}
                   shouldCloseOnEsc={true}
                   >
-                     <button className='trailerClose' onClick={closeModal}><i className="fa fa-times fa-2x" aria-hidden="true"></i></button>
-                     <iframe className='videoModal' width='80%' height="80%" src={`https://www.youtube.com/embed/${findKey(props.videos)}`} title='youtube' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                     <button className='trailerClose' onClick={() => setModal(false)}><i className="fa fa-times fa-2x" aria-hidden="true"></i></button>
+                     <iframe className='videoModal' width='80%' height="80%" src={`https://www.youtube.com/embed/${findKey(props.videos)}`} title='youtube' allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </Modal>
             </button> 
+            
       
     )
 }

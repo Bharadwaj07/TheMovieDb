@@ -1,8 +1,21 @@
-import React from 'react'
+import React ,{Component}from 'react'
 import { Link } from 'react-router-dom'
 
-function Pagination(props) {
-  const   renderPagination =(page,total_pages,baseUrl) =>{
+class Pagination extends Component {
+constructor(props){
+    super(props);
+    
+    this.renderPagination = this.renderPagination.bind(this)
+}
+componentDidMount(){
+    console.log('mounts - ',this.props)
+
+}
+componentDidUpdate(){
+    console.log('update - ',this.props)
+
+}
+   renderPagination =(page,total_pages,baseUrl) =>{
     //console.log(baseUrl,page,total_pages)
         if(total_pages ==1){
             return null
@@ -26,14 +39,17 @@ function Pagination(props) {
             )
         }
     }
+   render(){
+       console.log('render - ',this.props)
     return (
         <div>
-            {renderPagination(
-                props.page,
-                props.total_pages,
-                props.baseUrl
+            {this.renderPagination(
+                this.props.page,
+                this.props.total_pages,
+                this.props.baseUrl
             )}
         </div>
     )
+   }
 }
 export default Pagination;
