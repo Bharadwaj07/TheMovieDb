@@ -4,42 +4,59 @@ class DiscoverMovies extends Component {
     constructor(props){
         super(props);
         this.api_key = process.env.REACT_APP_API;
+        //this.baseUrl = `/discover/${this.props.match.params.movieType}`;
         this.state ={
             movies:[],
+            data:{},
+            baseUrl:''
         }
     }
     componentDidMount(){
-       // console.log(this.props.match.params.movieType)
+       // console.log(this.props)
         const movieType = this.props.match.params.movieType
-        console.log(movieType)
-        fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}`)
+        const page = this.props.location.search
+        const baseUrl =`/discover/${this.props.match.params.movieType}`
+        //console.log(movieType)
+        // console.log(page.split('?')[1])
+        fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&${page.split('?')[1]}`)
         .then(data =>data.json())
         .then(data =>{
-            console.log(data)
+            //console.log(data)
             this.setState({
-                movies:[...data.results]
+                movies:[...data.results],
+                data:{...data},
+                baseUrl:baseUrl
             })
         })
     }
     componentDidUpdate(prevProps){
         if(this.props.location.pathname!==prevProps.location.pathname){
             const movieType = this.props.match.params.movieType
-            console.log(movieType)
-            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US`)
+            const page = this.props.location.search
+            const baseUrl =`/discover/${this.props.match.params.movieType}`
+            //console.log(movieType)
+             //console.log(page.split('?')[1])
+            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&${page.split('?')[1]}`)
             .then(data =>data.json())
             .then(data =>{
-                console.log(data)
+                //console.log(data)
                 this.setState({
-                    movies:[...data.results]
+                    movies:[...data.results],
+                    data:{...data},
+                    baseUrl:baseUrl
                 })
             })
         }
     }
     render() {
+      // console.log(this.props.baseUrl)
         return (
-            <div>
-                <MovieList movies={this.state.movies}/>
-            </div>
+            <MovieList 
+                movies={this.state.movies} 
+                baseUrl={this.state.baseUrl} 
+                page ={this.state.data.page}
+                total_pages ={this.state.data.total_pages}
+            />
         )
     }
 }

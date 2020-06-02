@@ -1,8 +1,7 @@
 .trailerClose{
     position: absolute;
     top: 3%;
-    right: 10%;
-    cursor: pointer;
+    right: 10%; 
 }
 .videoModal{
     position: absolute;

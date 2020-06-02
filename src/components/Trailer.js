@@ -28,9 +28,15 @@ function Trailer(props) {
             <button onClick={() => setModal(true)}>
                 Trailer
                 <i className="fa fa-play" aria-hidden="true"></i>
-                <Modal isOpen={openModal} onRequestClose={closeModal} style={customStyles} >
+                <Modal 
+                  isOpen={openModal} 
+                  onRequestClose={closeModal} 
+                  style={customStyles} 
+                  shouldCloseOnOverlayClick={true}
+                  shouldCloseOnEsc={true}
+                  >
                      <button className='trailerClose' onClick={closeModal}><i className="fa fa-times fa-2x" aria-hidden="true"></i></button>
-                     <iframe className='videoModal' width='80%' height="80%" src={`https://www.youtube.com/embed/${findKey(props.videos)}`} frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                     <iframe className='videoModal' width='80%' height="80%" src={`https://www.youtube.com/embed/${findKey(props.videos)}`} title='youtube' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"></iframe>
                 </Modal>
             </button> 
       
@@ -38,12 +44,4 @@ function Trailer(props) {
 }
 
 export default  Trailer;
-function findKey(videos){
-    if (videos.length === 0) {
-        return;
-      }
-      const { key } = videos.find(
-        video => video.type === 'Trailer' && video.site === 'YouTube'
-      );
-      return key
-}
+
