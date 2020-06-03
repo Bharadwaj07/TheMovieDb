@@ -1,92 +1,145 @@
 import React,{Component} from 'react';
 import './MovieDetails.css';
 import RecomendMovie from './RecomendMovie';
-
+import {withRouter} from 'react-router-dom';
+import RenderRatings from '../components/RenderRatings';
+import Trailer from '../components/Trailer';
+import { Link } from 'react-scroll';
 class MovieDetails extends Component {
     constructor(props){
         super(props);
         this.movieId = this.props.match.params.movieid
+        this.page = this.props.match.params.page
         this.api_key = process.env.REACT_APP_API;
+        
         this.state ={
-            movieId:'',
-            movieDetails:{}
+            movieDetails:{},
+            ytResults:[],
+            language:'',
+            genres:[],
+            modalOpened:false,
         }
+        this.setModalopened = this.setModalopened.bind(this);
+        this.handleBack = this.handleBack.bind(this);
     }
     componentDidMount(){
-        //fetching data
-       fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits`)
-       .then(data => data.json())
-       .then(data =>{
-           //console.log(data)
-           this.setState({
-               movieDetails:{...data}
+        fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits,videos`)
+        .then(data => data.json())
+        .then(data =>{
+            this.setState({
+               movieDetails:{...data},
+               ytResults:[...data.videos.results],
+               language:data.spoken_languages[0].name,
+               genres:[...data.genres],
            })
-           //console.log(this.state.movieDetails)
        })
+       
     }
     componentDidUpdate(prevProps){
        if(this.props.location.pathname!==prevProps.location.pathname){
        
            this.movieId = this.props.match.params.movieid
-      
-           fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits`)
+           this.page = this.props.match.params.page
+           fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits,videos`)
             .then(data => data.json())
             .then(data =>{
                 
                 this.setState({
-                    movieDetails:{...data}
+                    movieDetails:{...data},
+                    ytResults:[...data.videos.results],
+                    languages:data.spoken_languages[0].name,
+                    genres:[...data.genres],
                 })
                
             })
-       }
-    
-
-        
+       }    
       
-    }
+}
+setModalopened(modalStatus){
+    //console.log(modalStatus)
+    this.setState({
+        modalOpened:modalStatus
+    })
+}
+handleBack(){
+    this.props.history.goBack();
+}
 
-    // refreshMovieDetails = data => console.log(data)
     render(){
-        
+       // console.log(this.state.ytResults)
+      
         return (
             <div>
                 <div className='detail-container'>
                     <div className='detail-img'>
-                    {this.state.movieDetails.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card' style={{width:"100%",height:"100%"}}/>
+                    {this.state.movieDetails.poster_path == null ? <img src={require('../assets/logo.svg')} alt='movie card' style={{width:"100%",height:"100%"}}/>
                     :<img src={`http://image.tmdb.org/t/p/w185${this.state.movieDetails.poster_path}`} alt='movie card' style={{width:"100%",height:"100%"}}/>}
                     </div>
                     <div className='detail-info'>
-                        <div className='movie-title'>
-                            <h1>{this.state.movieDetails.original_title}</h1>
-                            <h2>{this.state.movieDetails.tagline}</h2>
+                        <div className='movietitle'>
+                            <h3>{this.state.movieDetails.original_title}</h3>
+                            <h4>{this.state.movieDetails.tagline}</h4>
                         </div>
                         <div className='movie-rantingsAndruntime'>
                             <div className='ratings'>
-                                <span>
-                                    Ratings: {this.state.movieDetails.vote_average}
-                                </span>
+                                <RenderRatings
+                                    ratings={this.state.movieDetails.vote_average}
+                                />
+                                
                             </div>
-                            <div className='runtimeDetails'>
-                            {this.state.movieDetails.runtime} min 
+                            <div className='info'>
+                                {Info(
+                                    this.state.language,
+                                    this.state.movieDetails.runtime,
+                                    splitYear(this.state.movieDetails.release_date)
+                                )}
                             </div>
                         </div>
-                        <p>
-                            Overview: {this.state.movieDetails.overview}
-                        </p>
-                        <h4>Release date: {this.state.movieDetails.release_date}</h4>
+                        <div className='genreDetails'>
+                                <h3>The Genres</h3>
+                                <div>
+                                    {renderGenre(this.state.genres)}
+                                </div>
+                                   
+                                
+                        </div>
+                        <div className='overview'>
+                            <h3>The Synopsys</h3>
+                            <p>
+                                {this.state.movieDetails.overview}
+                            </p>
+                        </div>
 
                         <div>
-                            <h3>The Cast .</h3>
-                            <div>
-                                cast here..
-                            </div>
+                            
+                            <div className='connect'>
+                                <button>
+                                    <a href={`https://www.imdb.com/title/${this.state.movieDetails.imdb_id}/`}>IMDB</a>
+                                    <i className="fa fa-imdb" aria-hidden="true"></i>
+                                </button>
+                                <button>
+                                    <a href={this.state.movieDetails.homepage}>Website</a>
+                                    <i className="fa fa-link" aria-hidden="true"></i>
+                                </button>
+                                
+                                <Trailer
+                                    videos={this.state.ytResults}
+                                />
+                                <button className='back-btn' onClick={this.handleBack}>
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>Back
+                                </button>
+                            </div>     
                         </div>
                     </div>
                 </div>
              
-                <div className='recomendation'>
-                    <h3>Recocmended .</h3>
-                    <RecomendMovie movieId={this.movieId} />
+                <div>
+                    <h4 className='recomendation'>Recocmended</h4>
+                    <h4 className='recomend'>Movies</h4>
+                    <RecomendMovie 
+                        movieId={this.movieId}
+                        page={this.page}
+                    />
                 </div>
                 
             </div>
@@ -94,4 +147,37 @@ class MovieDetails extends Component {
     }
 }
 
-export default  MovieDetails;
+export default  withRouter(MovieDetails);
+
+function Info(languages,runtime,date){
+    return(
+        <div>
+            <span>{languages}</span>
+            <span>/</span>
+            <span>{runtime} MIN.</span>
+            <span>/</span>
+            <span>{date}</span>
+        </div>
+    )
+}
+function splitYear(date){
+    if (!date) {
+        return;
+      }
+      const [year] = date.split('-');
+      return year;
+}
+
+function renderGenre(genres){
+    return genres.map(genre =>
+       
+            <span key={genre.id}>
+                <Link  to={{pathname:`/genre/${genre.id}/1`}} > 
+                    <i className="fa fa-bullseye genreicon" aria-hidden="true"></i>
+                    {genre.name} 
+                </Link>
+            </span>
+        );
+
+}
+

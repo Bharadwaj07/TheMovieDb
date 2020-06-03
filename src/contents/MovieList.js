@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import MovieCard from '../components/MovieCard';
 import './MovieList.css';
-function MovieList(props) {
-const movies = props.movies;
-const movieList = movies.map(movie=>{
-    return(
-        <MovieCard movieInfo={movie} key={movie.id} />
-    )
-})
+import Pagination from '../components/Pagination';
 
-    return(
-        <div className='movieList'>
-            <div className='list-container'>
-                {movieList}
+
+
+export default class MovieList extends Component {
+    componentDidMount(){
+        //console.log(this.props)
+    }
+    componentDidUpdate(){
+       // console.log('MovieList update',this.props)
+    }
+    render() {
+        //console.log(this.props.baseUrl)
+        const movies = this.props.movies;
+        const movieList = movies.map(movie=>{
+                    return(
+                        <MovieCard movieInfo={movie} key={movie.id} />
+                    )
+                })
+        return (
+            <div className='movieList'>
+                <div className='list-container'>
+                    {movieList}
+                </div>
+                 <Pagination
+                    baseUrl={this.props.baseUrl}
+                    page={this.props.page}
+                    total_pages ={this.props.total_pages}
+
+                />
             </div>
-        </div>
-    )
-
-    
+        )
+    }
 }
-export default MovieList;

@@ -1,0 +1,11 @@
+
+.fullstar{
+    color: rgb(54, 51, 51);
+}
+.starRatings span{
+    color: rgb(68, 61, 61);
+}
+.starRatings{
+    margin: 0;
+    padding: 0;
+}
