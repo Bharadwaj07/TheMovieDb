@@ -1,13 +1,15 @@
 import React,{Component} from 'react';
 import './MovieDetails.css';
 import RecomendMovie from './RecomendMovie';
-
+import {withRouter} from 'react-router-dom';
 import RenderRatings from '../components/RenderRatings';
 import Trailer from '../components/Trailer';
+import { Link } from 'react-scroll';
 class MovieDetails extends Component {
     constructor(props){
         super(props);
         this.movieId = this.props.match.params.movieid
+        this.page = this.props.match.params.page
         this.api_key = process.env.REACT_APP_API;
         
         this.state ={
@@ -15,20 +17,20 @@ class MovieDetails extends Component {
             ytResults:[],
             language:'',
             genres:[],
-            modalOpened:false
+            modalOpened:false,
         }
         this.setModalopened = this.setModalopened.bind(this);
+        this.handleBack = this.handleBack.bind(this);
     }
     componentDidMount(){
-        //fetching data
-       fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits,videos`)
-       .then(data => data.json())
-       .then(data =>{
+        fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits,videos`)
+        .then(data => data.json())
+        .then(data =>{
             this.setState({
                movieDetails:{...data},
                ytResults:[...data.videos.results],
                language:data.spoken_languages[0].name,
-               genres:[...data.genres]
+               genres:[...data.genres],
            })
        })
        
@@ -37,7 +39,7 @@ class MovieDetails extends Component {
        if(this.props.location.pathname!==prevProps.location.pathname){
        
            this.movieId = this.props.match.params.movieid
-      
+           this.page = this.props.match.params.page
            fetch(`https://api.themoviedb.org/3/movie/${this.movieId}?api_key=${this.api_key}&append_to_response=credits,videos`)
             .then(data => data.json())
             .then(data =>{
@@ -46,7 +48,7 @@ class MovieDetails extends Component {
                     movieDetails:{...data},
                     ytResults:[...data.videos.results],
                     languages:data.spoken_languages[0].name,
-                    genres:[...data.genres]
+                    genres:[...data.genres],
                 })
                
             })
@@ -59,10 +61,13 @@ setModalopened(modalStatus){
         modalOpened:modalStatus
     })
 }
-
+handleBack(){
+    this.props.history.goBack();
+}
 
     render(){
        // console.log(this.state.ytResults)
+      
         return (
             <div>
                 <div className='detail-container'>
@@ -108,14 +113,21 @@ setModalopened(modalStatus){
                         <div>
                             
                             <div className='connect'>
-                                <button><a href={`https://www.imdb.com/title/${this.state.movieDetails.imdb_id}/`}>IMDB</a>
+                                <button>
+                                    <a href={`https://www.imdb.com/title/${this.state.movieDetails.imdb_id}/`}>IMDB</a>
                                     <i className="fa fa-imdb" aria-hidden="true"></i>
                                 </button>
-                                <button><a href={this.state.movieDetails.homepage}>Website</a>
-                                <i className="fa fa-link" aria-hidden="true"></i></button>
+                                <button>
+                                    <a href={this.state.movieDetails.homepage}>Website</a>
+                                    <i className="fa fa-link" aria-hidden="true"></i>
+                                </button>
+                                
                                 <Trailer
                                     videos={this.state.ytResults}
                                 />
+                                <button className='back-btn' onClick={this.handleBack}>
+                                <i class="fa fa-arrow-left" aria-hidden="true"></i>Back
+                                </button>
                             </div>     
                         </div>
                     </div>
@@ -124,7 +136,10 @@ setModalopened(modalStatus){
                 <div>
                     <h4 className='recomendation'>Recocmended</h4>
                     <h4 className='recomend'>Movies</h4>
-                    <RecomendMovie movieId={this.movieId} />
+                    <RecomendMovie 
+                        movieId={this.movieId}
+                        page={this.page}
+                    />
                 </div>
                 
             </div>
@@ -132,7 +147,7 @@ setModalopened(modalStatus){
     }
 }
 
-export default  MovieDetails;
+export default  withRouter(MovieDetails);
 
 function Info(languages,runtime,date){
     return(
@@ -155,9 +170,14 @@ function splitYear(date){
 
 function renderGenre(genres){
     return genres.map(genre =>
-        <span key={genre.id}>
-           <i className="fa fa-bullseye genreicon" aria-hidden="true"></i>
-             {genre.name} 
-        </span>);
+       
+            <span key={genre.id}>
+                <Link  to={{pathname:`/genre/${genre.id}/1`}} > 
+                    <i className="fa fa-bullseye genreicon" aria-hidden="true"></i>
+                    {genre.name} 
+                </Link>
+            </span>
+        );
 
 }
+

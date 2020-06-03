@@ -12,10 +12,10 @@ class GenreMovies extends Component {
     }
     componentDidMount(){
         const genreId = this.props.match.params.genreId
-        const page = this.props.location.search
+        const page = this.props.match.params.page
         const baseUrl = `/genre/${this.props.match.params.genreId}`;
        // console.log(genreId)
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}&${page.split('?')[1]}`)
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}&page=${page}`)
         .then(data =>data.json())
         .then(data =>{
             //console.log(data)
@@ -29,10 +29,10 @@ class GenreMovies extends Component {
     componentDidUpdate(prevProps){
         if(this.props.location.pathname!==prevProps.location.pathname){
             const genreId = this.props.match.params.genreId
-            const page = this.props.location.search
+            const page = this.props.match.params.page
             const baseUrl = `/genre/${this.props.match.params.genreId}`;
             // console.log(genreId)
-            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}&language=en-US&${page.split('?')[1]}`)
+            fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${this.api_key}&with_genres=${genreId}&language=en-US&page=${page}`)
             .then(data =>data.json())
             .then(data =>{
                 //console.log(data)

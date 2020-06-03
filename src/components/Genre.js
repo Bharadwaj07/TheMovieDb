@@ -26,7 +26,7 @@ class Genre extends Component {
                return(
                     <div className='item' key={genre.id}>
                        <i className="fa fa-dot-circle-o faicon" aria-hidden="true"></i>
-                       <Link to={{pathname:`/genre/${genre.id}`}}> <h4>{genre.name}</h4></Link>
+                       <Link to={{pathname:`/genre/${genre.id}/1`}}> <h4>{genre.name}</h4></Link>
                     </div>
                )
             }

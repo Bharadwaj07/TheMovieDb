@@ -1,25 +1,27 @@
 import React,{useState} from 'react';
 import './SearchBar.css';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {withRouter} from 'react-router-dom';
 function SearchBar(props) {
-    const submitSearch =(e)=>{
-        e.preventDefault();
-        alert("searched..!")
-    }
-    const [search,setSearch] = useState(false);
+    const [query,setSearch] = useState('');
 
-    const openSearch = ()=>{
-        setSearch(true);
-    } 
+    const handleChange = (e)=>{
+        setSearch(e.target.value)
+    }
+    const handleSubmit = (e) =>{
+        setSearch(e.target.value);
+        console.log(props)
+        props.history.push(`/search/${query}/1`)
+    }
     // const searchClass = search? "searchInput active":"searchInput" ;
         return (
-            <div className='search'>
-                <form onSubmit={submitSearch}>
-                    <input type='text' className='search-input' placeholder='search...'/>
-                    <i className="fa fa-search fa-lg" aria-hidden="true"></i>
-                </form>
-            </div>
+               <header className='search-container' onSubmit={handleSubmit}>
+                    <form  className='search'>
+                        <i className="fa fa-search fa-lg search-icon" aria-hidden="true"></i>
+                        <input type='text' className='search-input' placeholder='search...' onChange={handleChange}/>
+                    </form>
+                </header>
+         
         )
    
 }
-export default  SearchBar;
+export default  withRouter(SearchBar);

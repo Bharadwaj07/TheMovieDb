@@ -105,6 +105,13 @@
 .connect button i{
     margin: 0 10px;
 }
+.connect button{
+    outline: none;
+}
+.back-btn{
+    background-color: rgb(17, 27, 27);
+    color: white;
+}
  .recomendation{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;

@@ -22,7 +22,7 @@ function Trailer(props) {
             function closeModal(){
                 setModal(!openModal);
               }
-              console.log("openmodla",openModal)
+              //console.log("openmodla",openModal)
     return (
         
             <button onClick={() => setModal(!openModal)}>

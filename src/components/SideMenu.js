@@ -9,7 +9,7 @@ import StickyBox from 'react-sticky-box';
         return (
             <StickyBox>
                 <div className='sidemenu'>
-                    <img src={require('../assets/logo.svg')} className='logo'/>
+                    <img src={require('../assets/logo.svg')} className='logo' alt='logo'/>
                     <div className='sidemenu-content'>
                         <Discover/>
                         <Genre/>

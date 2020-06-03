@@ -23,7 +23,7 @@ class MovieCard extends Component {
         //console.log(this.state.movie.vote_average)
         return (
                 
-            <Link to={`/movie/${this.state.movie.id}`} >
+            <Link to={`/movie/${this.state.movie.id}/1`} >
                 <div className='card-container'>
                     <div className='card-img'>
                         {this.state.movie.poster_path == null ? <img src={`https://s3-ap-southeast-1.amazonaws.com/upcode/static/default-image.jpg` } alt='movie card' style={{width:"100%",height:"100%"}}/>

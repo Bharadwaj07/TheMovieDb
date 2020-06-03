@@ -14,11 +14,11 @@ class DiscoverMovies extends Component {
     componentDidMount(){
        // console.log(this.props)
         const movieType = this.props.match.params.movieType
-        const page = this.props.location.search
+        const page = this.props.match.params.page
         const baseUrl =`/discover/${this.props.match.params.movieType}`
         //console.log(movieType)
         // console.log(page.split('?')[1])
-        fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&${page.split('?')[1]}`)
+        fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&page=${page}`)
         .then(data =>data.json())
         .then(data =>{
             //console.log(data)
@@ -30,16 +30,12 @@ class DiscoverMovies extends Component {
         })
     }
     componentDidUpdate(prevProps){
-        console.log(this.props.location.pathname)
-       console.log('params ',this.props.match.params)
-       //console.log()
-        if(this.props.location.pathname!==prevProps.location.pathname){
+        console.log(this.props.location.search)
+        if((this.props.location.pathname!==prevProps.location.pathname)){
             const movieType = this.props.match.params.movieType
-            const page = this.props.location.search
+            const page = this.props.match.params.page
             const baseUrl =`/discover/${this.props.match.params.movieType}`
-            //console.log(movieType)
-             //console.log(page.split('?')[1])
-            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&${page.split('?')[1]}`)
+            fetch(`https://api.themoviedb.org/3/movie/${movieType}?api_key=${this.api_key}&language=en-US&page=${page}`)
             .then(data =>data.json())
             .then(data =>{
                 //console.log(data)
@@ -53,7 +49,7 @@ class DiscoverMovies extends Component {
         }
     }
     render() {
-       console.log('discover render',this.state.data.page)
+      // console.log('discover render',this.state.data.page)
         return (
             <MovieList 
                 data={this.state.data}

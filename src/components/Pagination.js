@@ -1,30 +1,25 @@
 import React ,{Component}from 'react'
 import { Link } from 'react-router-dom'
-
+import './Pagination.css';
 class Pagination extends Component {
 constructor(props){
     super(props);
     
     this.renderPagination = this.renderPagination.bind(this)
 }
-componentDidMount(){
-    console.log('mounts - ',this.props)
-
-}
-componentDidUpdate(){
-    console.log('update - ',this.props)
-
-}
    renderPagination =(page,total_pages,baseUrl) =>{
-    //console.log(baseUrl,page,total_pages)
-        if(total_pages ==1){
+    //console.log(typeof(page))
+        if(total_pages ===1){
             return null
         }
-        if(page < total_pages && page ==1){
+        if(page < total_pages && page ===1){
             //console.log(total_pages)
             return(
-                <Link to={{pathname:`${baseUrl}?page=${parseInt(page) +1}`}}>
-                    <button>Page {parseInt(page) + 1}</button>
+                <Link to={{pathname:`${baseUrl}/${parseInt(page)+1}`}}>
+                    <button className='nextPage'>
+                        Page {parseInt(page) + 1}
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
                 </Link>
             )
         }
@@ -32,15 +27,24 @@ componentDidUpdate(){
            //console.log(baseUrl)
             return(
                 <div>
-                    <Link to={{pathname:`${baseUrl}?page=${parseInt(page) -1}`}}>
-                        <button>Page {parseInt(page) - 1}</button></Link>
-                    <Link to={{pathname:`${baseUrl}?page=${parseInt(page) +1}`}}><button>Page {parseInt(page) + 1}</button></Link>
+                    <Link to={{pathname:`${baseUrl}/${parseInt(page)-1}`}}>
+                        <button className='prevPage'>
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Page {parseInt(page) - 1}
+                        </button>
+                    </Link>
+                    <Link to={{pathname:`${baseUrl}/${parseInt(page)+1}`}}>
+                        <button className='nextPage'>
+                            Page {parseInt(page) + 1}
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </button>
+                    </Link>
                 </div>
             )
         }
     }
    render(){
-       console.log('render - ',this.props)
+       //console.log('render - ',this.props)
     return (
         <div>
             {this.renderPagination(
