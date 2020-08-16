@@ -4,7 +4,6 @@ import RecomendMovie from './RecomendMovie';
 import {withRouter} from 'react-router-dom';
 import RenderRatings from '../components/RenderRatings';
 import Trailer from '../components/Trailer';
-import { Link } from 'react-scroll';
 class MovieDetails extends Component {
     constructor(props){
         super(props);
@@ -126,7 +125,7 @@ handleBack(){
                                     videos={this.state.ytResults}
                                 />
                                 <button className='back-btn' onClick={this.handleBack}>
-                                <i class="fa fa-arrow-left" aria-hidden="true"></i>Back
+                                <i className="fa fa-arrow-left" aria-hidden="true"></i>Back
                                 </button>
                             </div>     
                         </div>
@@ -172,10 +171,10 @@ function renderGenre(genres){
     return genres.map(genre =>
        
             <span key={genre.id}>
-                <Link  to={{pathname:`/genre/${genre.id}/1`}} > 
+     
                     <i className="fa fa-bullseye genreicon" aria-hidden="true"></i>
                     {genre.name} 
-                </Link>
+               
             </span>
         );
 

@@ -18,7 +18,7 @@ constructor(props){
                 <Link to={{pathname:`${baseUrl}/${parseInt(page)+1}`}}>
                     <button className='nextPage'>
                         Page {parseInt(page) + 1}
-                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        <i className="fa fa-arrow-right" aria-hidden="true"></i>
                     </button>
                 </Link>
             )
@@ -29,14 +29,14 @@ constructor(props){
                 <div>
                     <Link to={{pathname:`${baseUrl}/${parseInt(page)-1}`}}>
                         <button className='prevPage'>
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            <i className="fa fa-arrow-left" aria-hidden="true"></i>
                             Page {parseInt(page) - 1}
                         </button>
                     </Link>
                     <Link to={{pathname:`${baseUrl}/${parseInt(page)+1}`}}>
                         <button className='nextPage'>
                             Page {parseInt(page) + 1}
-                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            <i className="fa fa-arrow-right" aria-hidden="true"></i>
                         </button>
                     </Link>
                 </div>

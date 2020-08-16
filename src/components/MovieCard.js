@@ -34,9 +34,6 @@ class MovieCard extends Component {
                         <RenderRatings
                             ratings={this.state.movie.vote_average}
                         />
-                        {/* <span className='vote-details'>
-                             {this.state.movie.vote_average} average rating on {this.state.movie.vote_count} votes
-                        </span> */}
                         
                     </div>
                 </div>
